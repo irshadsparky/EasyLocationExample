@@ -13,7 +13,10 @@ use dependency
  maven { url 'https://jitpack.io' }
 
 dependencies {
-  implementation 'com.github.irshadsparky:EasyLocation:master-SNAPSHOT'
+   implementation ('com.github.irshadsparky:EasyLocation:master-SNAPSHOT') {
+        exclude  group:'com.android.support', module:'support-annotations'
+        exclude  group:'com.android.support', module:'support-v4'
+    }
 }
 ```
 
