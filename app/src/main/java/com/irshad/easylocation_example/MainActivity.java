@@ -3,6 +3,8 @@ package com.irshad.easylocation_example;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -11,7 +13,6 @@ import android.widget.TextView;
 import com.irshad.EasyLocation.service.LocationService;
 
 public class MainActivity extends AppCompatActivity {
-    LocationService mLocationService;
     TextView tvAboutLocation;
 
     @Override
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mLocationService = ((LocationService.LocationBinder) service).getService();
+            LocationService mLocationService = ((LocationService.LocationBinder) service).getService();
             mLocationService.setOnGetLocationListener(new LocationService.OnGetLocationListener() {
                 @Override
                 public void getLocation(final String lastLatitude, final String lastLongitude, final String latitude, final String longitude, final String country, final String locality, final String street) {
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bindService(new Intent(this, LocationService.class), conn, Context.BIND_AUTO_CREATE);
+
+    }
 
     @Override
     protected void onDestroy() {
