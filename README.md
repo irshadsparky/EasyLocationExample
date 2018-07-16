@@ -75,6 +75,7 @@ dependencies {
     
 ```
 you can also develope your require permission.
+
 5. Initialize in your Application class.
 ```java
 
