@@ -75,7 +75,20 @@ dependencies {
     
 ```
 you can also develope your require permission.
-5. That's it! if any truble download this project and run it you can understand batter
+5. Initialize in your Application class.
+```java
+
+Utils.init(this);
+
+public class MyApplicationClass extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Utils.init(this);
+    }
+}
+```
+6. That's it! if any truble download this project and run it you can understand batter
 
 ### Contributing
 
